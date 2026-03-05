@@ -81,3 +81,47 @@ Structured JSON with the same schema as Milestone 1, but now with higher reliabi
     "follow_up_email": "Subject: Update on Project X..."
 }
 ```
+
+## Milestone 3: YAML Workflow Engine
+
+**Engine:** `engine/workflow_engine.py`  
+**Workflow Configs:** `workflow_configs/meeting_workflow.yaml`  
+**Test Script:** `tests/test_workflows.py`
+
+### Overview
+
+Milestone 3 introduces a **generic workflow engine** that reads YAML configuration files to run AI workflows. This allows multiple business workflows to be added without modifying Python code.  
+
+The engine executes workflows in the following sequence:
+
+1. Load the YAML workflow definition
+2. Map each step's function name to its corresponding Python function
+3. Execute the Python function with the input data
+4. Collect structured JSON outputs
+
+This design separates **workflow logic** from **workflow configuration**, enabling scalable, citizen-developer-ready AI automation.
+
+### Input
+
+- Plain text meeting transcript (same as Milestone 1 & 2)
+- Can be extended to other document types or workflows by creating a new YAML file and corresponding Python function
+
+**Example Input:**
+Same as Milestone 1: a plain text meeting transcript.
+
+
+### YAML Workflow Definition
+
+Example `workflow_configs/meeting_workflow.yaml`:
+
+```yaml
+workflow_name: meeting_workflow
+steps:
+  - name: meeting_to_action
+    function: meeting_to_action
+    description: "Convert meeting transcript into structured JSON with summary, action_items, risks, follow_up_email."
+
+```
+### Output 
+Structured JSON, same schema as Milestone 2
+
