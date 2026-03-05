@@ -7,9 +7,13 @@ AI-Flow is a Python-based AI workflow automation platform. It processes meeting 
 **Workflow:** `meeting_to_action.py`  
 **Test Script:** `tests/test_workflows.py`
 
+### Overview
+This workflow processes meeting transcripts and automatically extracts key outcomes from discussions. The AI analyzes the transcript, summarizes the discussion, identifies action items with responsible owners and deadlines, detects potential risks, and drafts a follow-up email to stakeholders.
+
 ### Input
 A meeting transcript in plain text.  
-Example:
+
+**Example Input:**
 Project X is delayed due to resource issues.
 Alice will prepare the report by Friday.
 Bob will notify stakeholders about the change.
@@ -89,7 +93,6 @@ Structured JSON with the same schema as Milestone 1, but now with higher reliabi
 **Test Script:** `tests/test_workflows.py`
 
 ### Overview
-
 Milestone 3 introduces a **generic workflow engine** that reads YAML configuration files to run AI workflows. This allows multiple business workflows to be added without modifying Python code.  
 
 The engine executes workflows in the following sequence:
@@ -102,16 +105,13 @@ The engine executes workflows in the following sequence:
 This design separates **workflow logic** from **workflow configuration**, enabling scalable, citizen-developer-ready AI automation.
 
 ### Input
-
 - Plain text meeting transcript (same as Milestone 1 & 2)
 - Can be extended to other document types or workflows by creating a new YAML file and corresponding Python function
 
 **Example Input:**
 Same as Milestone 1: a plain text meeting transcript.
 
-
 ### YAML Workflow Definition
-
 Example `workflow_configs/meeting_workflow.yaml`:
 
 ```yaml
@@ -125,3 +125,55 @@ steps:
 ### Output 
 Structured JSON, same schema as Milestone 2
 
+## Milestone 4: Risk Assessment Workflow
+
+**Workflow:** `risk_assessment.py`  
+**Workflow Config:** `workflow_configs/risk_assessment_workflow.yaml`
+**Test Script:** `tests/test_risk_assessment.py`
+
+### Overview
+Milestone 4 allows project managers to identify and mitigate potential risks in project plans or proposals. The AI analyzes the input text, categorizes risks, evaluates likelihood and impact, and suggests mitigation plans.
+
+It uses **Chain-of-Thought (CoT)** reasoning and **Reflexion** to ensure completeness and accuracy.
+
+### Input
+Project plans or proposals as plain text.
+
+**Example Input:**
+Project Alpha aims to launch a new product by Q3.
+Potential resource constraints may delay development.
+Testing team may not complete QA on time.
+Marketing dependencies may cause launch misalignment.
+
+### YAML Workflow Definition
+Example `workflow_configs/meeting_workflow.yaml`:
+
+```yaml
+workflow_name: meeting_workflow
+steps:
+  - name: meeting_to_action
+    function: meeting_to_action
+    description: "Convert meeting transcript into structured JSON with summary, action_items, risks, follow_up_email."
+
+```
+### Output
+Structured JSON containing:
+
+- `risk_description` – Description of the identified project risk
+- `likelihood` – Estimated probability of the risk occurring (High, Medium, Low)
+- `impact` – Severity of the risk if it occurs (High, Medium, Low)
+- `mitigation_plan` – Recommended actions to reduce or manage the risk
+
+**Example Output:**
+```json
+{
+  "risks": [
+    {
+      "risk_description": "Project delay due to limited developer resources",
+      "likelihood": "High",
+      "impact": "High",
+      "mitigation_plan": "Allocate additional developers or adjust project timeline to accommodate resource constraints."
+    }
+  ]
+}
+```
