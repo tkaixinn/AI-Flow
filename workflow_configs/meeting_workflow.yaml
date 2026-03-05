@@ -1,0 +1,5 @@
+workflow_name: meeting_workflow
+steps:
+  - name: meeting_to_action
+    function: meeting_to_action
+    description: "Convert meeting transcript into structured JSON with summary, action_items, risks, follow_up_email."

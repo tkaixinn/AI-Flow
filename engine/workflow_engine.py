@@ -1,0 +1,30 @@
+import yaml
+from workflows.meeting_to_action import meeting_to_action
+
+
+# Map YAML function names to actual Python functions
+FUNCTION_MAP = {
+    "meeting_to_action": meeting_to_action
+}
+
+
+def run_workflow(workflow_path, input_data):
+
+    with open(workflow_path, "r") as f:
+        config = yaml.safe_load(f)
+
+    outputs = {}
+
+    for step in config["steps"]:
+        func_name = step["function"]
+
+        if func_name not in FUNCTION_MAP:
+            raise ValueError(f"Function {func_name} not registered")
+
+        func = FUNCTION_MAP[func_name]
+
+        result = func(input_data)
+
+        outputs[step["name"]] = result
+
+    return outputs
