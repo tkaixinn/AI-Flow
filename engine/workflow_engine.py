@@ -1,10 +1,13 @@
 import yaml
 from workflows.meeting_to_action import meeting_to_action
+from workflows.risk_assessment import risk_assessment
 
 
 # Map YAML function names to actual Python functions
 FUNCTION_MAP = {
-    "meeting_to_action": meeting_to_action
+    "meeting_to_action": meeting_to_action,
+    "risk_assessment": risk_assessment
+
 }
 
 

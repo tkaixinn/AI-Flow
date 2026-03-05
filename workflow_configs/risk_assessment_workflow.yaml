@@ -1,0 +1,5 @@
+workflow_name: risk_assessment_workflow
+steps:
+  - name: risk_assessment
+    function: risk_assessment
+    description: "Analyze project plans or proposals and return JSON with risk_description, likelihood, impact, and mitigation_plan."

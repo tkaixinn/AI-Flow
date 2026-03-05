@@ -16,6 +16,15 @@ Instructions:
 - After generating the first output, review it and fix any missing items (Reflexion).
 - Return ONLY a valid JSON object with keys: summary, action_items, risks, follow_up_email.
 
+    
+**CRITICAL INSTRUCTION:**
+Return ONLY the corrected JSON. 
+NO explanations. NO tables. NO comments. NO markdown.
+Just the raw JSON object starting with {{ and ending with }}.
+
+Example of correct format:
+{{"summary": "...", "action_items": [...], "risks": [...], "follow_up_email": "..."}}
+
 Meeting transcript:
 \"\"\"{transcript}\"\"\"
 """
