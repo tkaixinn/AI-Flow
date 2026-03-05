@@ -128,7 +128,7 @@ Structured JSON, same schema as Milestone 2
 ## Milestone 4: Risk Assessment Workflow
 
 **Workflow:** `risk_assessment.py`  
-**Workflow Config:** `workflow_configs/risk_assessment_workflow.yaml`
+**Workflow Config:** `workflow_configs risk_assessment_workflow.yaml`
 **Test Script:** `tests/test_risk_assessment.py`
 
 ### Overview
@@ -177,3 +177,50 @@ Structured JSON containing:
   ]
 }
 ```
+## Milestone 5: CLI Workflow Runner
+
+**CLI Script:** `run_workflow.py`  
+**Tested Workflows:** `meeting_to_action.py`, `risk_assessment.py`  
+
+### Overview
+Milestone 5 introduces a **command-line interface (CLI)** that allows users to run any workflow defined in YAML using a simple text file as input. The CLI executes the workflow using the workflow engine and outputs structured JSON directly in the terminal.  
+
+This milestone demonstrates modularity and prepares the system for future non-technical interfaces, like a web app.
+
+### Features
+- Run multiple workflows from the terminal (e.g., `meeting_workflow`, `risk_assessment_workflow`)  
+- Accepts an input text file  
+- Executes the selected workflow via `workflow_engine.run_workflow()`  
+- Prints structured JSON output in a readable format  
+
+### CLI Usage
+```bash
+python run_workflow.py <workflow_name> <input_file>
+```
+**Example:**
+python run_workflow.py meeting_workflow inputs/meeting1.txt
+
+### Input
+A plain text file containing the input for the workflow.
+
+**Example Input File (**```inputs/meetings.txt```**):**
+Project X is delayed due to resource issues.
+Alice will prepare the report by Friday.
+Bob will notify stakeholders about the change.
+
+### Output 
+Structured JSON, same schema as Milestone 2
+
+**Example Output:**
+```json
+{
+  "summary": "Project X is delayed due to resource constraints...",
+  "action_items": [
+    {"owner": "Alice", "task": "Prepare report", "deadline": "2026-03-11"},
+    {"owner": "Bob", "task": "Notify stakeholders", "deadline": "2026-03-11"}
+  ],
+  "risks": ["Resource constraints causing delay"],
+  "follow_up_email": "Subject: Update on Project X..."
+}
+```
+
