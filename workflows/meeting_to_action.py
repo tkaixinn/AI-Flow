@@ -1,3 +1,4 @@
+import json
 from utils.ai_client import call_ai
 
 def meeting_to_action(transcript):
@@ -32,7 +33,10 @@ Meeting transcript:
 
     refined_output = reflexion_check(initial_output)
 
-    return refined_output
+    try:
+        return json.loads(refined_output)
+    except json.JSONDecodeError:
+        return {"error": refined_output}
 
 def reflexion_check(output_json):
     prompt = f"""

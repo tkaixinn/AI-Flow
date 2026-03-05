@@ -2,8 +2,6 @@ import yaml
 from workflows.meeting_to_action import meeting_to_action
 from workflows.risk_assessment import risk_assessment
 
-
-# Map YAML function names to actual Python functions
 FUNCTION_MAP = {
     "meeting_to_action": meeting_to_action,
     "risk_assessment": risk_assessment
@@ -13,6 +11,9 @@ FUNCTION_MAP = {
 
 def run_workflow(workflow_path, input_data):
 
+    if not workflow_path.endswith('.yaml'):
+        workflow_path = f"workflow_configs/{workflow_path}.yaml"
+    
     with open(workflow_path, "r") as f:
         config = yaml.safe_load(f)
 
