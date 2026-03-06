@@ -50,6 +50,9 @@ with tab1:
             with st.spinner("Running workflow..."):
                 try:
                     output = run_workflow(workflow_name, input_text)
+
+                    if isinstance(output, dict) and "error" in output:
+                        output = output["error"]
                     
                     st.subheader("📊 Workflow Output")
                     col1, col2 = st.columns([1, 2])
