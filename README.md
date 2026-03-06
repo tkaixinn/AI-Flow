@@ -2,6 +2,12 @@
 
 AI-Flow is a Python-based AI workflow automation platform. It processes meeting transcripts and other business documents to automatically generate actionable insights.
 
+[![Streamlit App](https://img.shields.io/badge/Live%20App-Streamlit-green)](https://ai-flow.streamlit.app)
+
+## Live Demo
+
+Try AI-Flow here: [AI-Flow Live Demo](https://ai-flow.streamlit.app)
+
 ## Milestone 1: Meeting Workflow
 
 **Workflow:** `meeting_to_action.py`  
@@ -271,3 +277,25 @@ streamlit run app.py
 - **Readable Output**: Formatted for business users and uses HTML for styling in the dashboard.  
 - **JSON Output**: Designed for technical users; suitable for programmatic consumption or further processing.  
 - **Workflow Guide**: Ensures users know what to provide as input, making the platform intuitive.
+
+## Milestone 7: Streamlit Deployment
+
+**Overview:** 
+Deploy AI-Flow as a web application for easy access without requiring local Python setup.
+
+**Features:**
+### 1. Workflow Selection
+Full Streamlit web app interface for running workflows.
+### 2. Input Options
+Tabbed interface: "Run Workflow" for input/output and "Workflow Guide" for instructions.
+- Downloadable JSON output for technical users.
+- Readable structured output for business users.
+
+**Deployment Details:**
+- Deployed on **Streamlit Cloud**, tagged as **v1.0** for the first stable release.
+- Live demo for stakeholders and interviewers: [AI-Flow Live Demo](https://ai-flow.streamlit.app)
+
+**Deployment Summary:**
+- Project hosted on GitHub and linked to Streamlit Cloud.
+- `app.py` used as the entry point with all dependencies specified in `requirements.txt`.
+- Deployment verified to ensure smooth functionality and accessibility.
