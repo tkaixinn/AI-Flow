@@ -224,3 +224,50 @@ Structured JSON, same schema as Milestone 2
 }
 ```
 
+# Milestone 6: Streamlit Dashboard 
+
+## Overview 
+Milestone 6 focuses on building a **user-friendly platform using Streamlit** for AI-Flow workflows. The goal is to make AI-driven workflow outputs accessible to both business and technical users without requiring coding knowledge.
+
+## Features
+### 1. Workflow Selection
+- Users can choose between available workflows:
+  - **Meeting Workflow**: Converts meeting transcripts into structured action items.
+  - **Risk Assessment Workflow**: Analyzes project plans to identify potential risks.
+
+### 2. Input Options
+- **Paste text** directly into the sidebar.  
+- **Upload a `.txt` file** containing input.  
+
+### 3. Tabbed Interface
+- **🚀 Run Workflow**: Execute workflows and view outputs.  
+- **📘 Workflow Guide**: Provides clear instructions on what to include in each workflow input, with examples and expected outputs.
+
+### 4. Readable Output
+- Workflow results are displayed in a **business-friendly, structured format** using paragraphs, headings, and bullet points.  
+- Designed to be **easy to read** for non-technical users.
+
+### 5. JSON Output (Technical Users)
+- Users can download the raw workflow output as a JSON file for **technical use**.  
+- The JSON is **indented for readability** and preserves structured data.
+
+## Steps to Run
+1. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+2. Run the Streamlit app:
+```bash
+streamlit run app.py
+```
+
+3. Open the URL displayed in your terminal (usually `http://localhost:8501`).
+
+4. Select a workflow, provide input, and click **Run Workflow**.
+
+5. View output in **Readable Output** or download as JSON.
+
+## Notes
+- **Readable Output**: Formatted for business users and uses HTML for styling in the dashboard.  
+- **JSON Output**: Designed for technical users; suitable for programmatic consumption or further processing.  
+- **Workflow Guide**: Ensures users know what to provide as input, making the platform intuitive.
