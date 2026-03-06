@@ -53,6 +53,13 @@ with tab1:
 
                     if isinstance(output, dict) and "error" in output:
                         output = output["error"]
+
+                    if isinstance(output, str):
+                        try:
+                            output = json.loads(output)
+                        except json.JSONDecodeError:
+                            st.error("⚠️ AI output could not be parsed. Please check input.")
+                            output = {}
                     
                     st.subheader("📊 Workflow Output")
                     col1, col2 = st.columns([1, 2])
