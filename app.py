@@ -1,3 +1,4 @@
+import json
 import streamlit as st
 from engine.workflow_engine import run_workflow
 
@@ -26,7 +27,6 @@ elif input_method == "Upload file":
         input_text = uploaded_file.read().decode("utf-8")
 
 run_button = st.sidebar.button("🚀 Run Workflow")
-
 
 st.markdown(
     """
@@ -123,6 +123,13 @@ with tab1:
                         with st.expander("View Raw JSON Output"):
                             st.json(output)
                         
+                        st.download_button(
+                            label="⬇️ Download Output as JSON",
+                            data=json.dumps(output, indent=2),
+                            file_name="workflow_output.json",
+                            mime="application/json"
+                        )
+
                 except Exception as e:
                     st.error(f"❌ Error running workflow: {e}")
 
