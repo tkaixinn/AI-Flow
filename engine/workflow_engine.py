@@ -10,7 +10,7 @@ FUNCTION_MAP = {
 
 
 def run_workflow(workflow_path, input_data):
-
+   
     if not workflow_path.endswith('.yaml'):
         workflow_path = f"workflow_configs/{workflow_path}.yaml"
     
