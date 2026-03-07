@@ -299,3 +299,21 @@ Tabbed interface: "Run Workflow" for input/output and "Workflow Guide" for instr
 - Project hosted on GitHub and linked to Streamlit Cloud.
 - `app.py` used as the entry point with all dependencies specified in `requirements.txt`.
 - Deployment verified to ensure smooth functionality and accessibility.
+
+### Milestone 8: Refined Readable Outputs & Streamlit Presentation
+
+**Overview**  
+This milestone enhances the presentation of workflow outputs for **non-technical users**, making AI-Flow results immediately actionable and visually clear. Outputs are now formatted with indentations and sections, improving readability and professional appearance. 
+
+**Enhancements**
+- **Error Handling:** Recursive extraction of meaningful AI outputs, unwrapping any error-wrapped responses.  
+- **Readable Output Formatting:** Nested JSON outputs are displayed in a business-friendly format using headings, bullets, and spacing.  
+
+**Input**  
+Same as previous milestones: plain text meeting transcripts or project plans.
+
+**Output**  
+Readable, structured, business-friendly output alongside JSON. 
+
+**Impact**  
+Improves end-user experience, reduces cognitive load, and ensures stakeholders can quickly interpret and act on AI-generated insights.
