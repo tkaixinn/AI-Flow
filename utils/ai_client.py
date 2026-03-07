@@ -9,7 +9,7 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 
-def call_ai(prompt, max_tokens=1000, temperature=0.3):
+def call_ai(prompt, max_tokens=5000, temperature=0.3):
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY}",
         "Content-Type": "application/json"

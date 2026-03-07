@@ -1,5 +1,28 @@
 import json
+import re
 from utils.ai_client import call_ai
+
+
+def parse_json_safely(text):
+    if not isinstance(text, str):
+        return text
+    
+    text = text.strip()
+    
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+    
+    json_match = re.search(r'\{.*\}', text, re.DOTALL)
+    if json_match:
+        try:
+            return json.loads(json_match.group())
+        except json.JSONDecodeError:
+            pass
+    
+    return {"error": text}
+
 
 def meeting_to_action(transcript):
     prompt = f"""
@@ -33,10 +56,30 @@ Meeting transcript:
 
     refined_output = reflexion_check(initial_output)
 
+    return parse_json_safely(refined_output)
+
+
+def parse_json_safely(text):
+    """Try to parse JSON from text, handling various edge cases"""
+    if not isinstance(text, str):
+        return text
+    
+    text = text.strip()
+    
     try:
-        return json.loads(refined_output)
+        return json.loads(text)
     except json.JSONDecodeError:
-        return {"error": refined_output}
+        pass
+    
+    import re
+    json_match = re.search(r'\{.*\}', text, re.DOTALL)
+    if json_match:
+        try:
+            return json.loads(json_match.group())
+        except json.JSONDecodeError:
+            pass
+
+    return {"error": text}
 
 def reflexion_check(output_json):
     prompt = f"""

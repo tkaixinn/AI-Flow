@@ -51,8 +51,42 @@ with tab1:
                 try:
                     output = run_workflow(workflow_name, input_text)
 
-                    if isinstance(output, dict) and "error" in output:
-                        output = output["error"]
+                    def extract_from_errors(data):
+                        """Recursively extract actual data from error-wrapped responses"""
+                        if isinstance(data, dict):
+                            if len(data) == 1 and "error" in data:
+                                error_value = data["error"]
+                    
+                                if isinstance(error_value, (dict, list)):
+                                    return extract_from_errors(error_value)
+                              
+                                elif isinstance(error_value, str) and (error_value.strip().startswith('{') or error_value.strip().startswith('[')):
+                                    try:
+                                        return extract_from_errors(json.loads(error_value))
+                                    except json.JSONDecodeError:
+                                        return error_value
+                                else:
+                                    return error_value
+                    
+                            result = {}
+                            for k, v in data.items():
+                            
+                                if isinstance(v, str) and (v.strip().startswith('{') or v.strip().startswith('[')):
+                                    try:
+                                        result[k] = json.loads(v)
+                                    except json.JSONDecodeError:
+                                        result[k] = v
+                          
+                                elif isinstance(v, (dict, list)):
+                                    result[k] = extract_from_errors(v)
+                                else:
+                                    result[k] = v
+                            return result
+                        elif isinstance(data, list):
+                            return [extract_from_errors(item) for item in data]
+                        return data
+                    
+                    output = extract_from_errors(output)
 
                     if isinstance(output, str):
                         try:

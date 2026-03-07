@@ -1,5 +1,28 @@
 import json
+import re
 from utils.ai_client import call_ai
+
+
+def parse_json_safely(text):
+    if not isinstance(text, str):
+        return text
+    
+    text = text.strip()
+
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+    
+    json_match = re.search(r'\{.*\}', text, re.DOTALL)
+    if json_match:
+        try:
+            return json.loads(json_match.group())
+        except json.JSONDecodeError:
+            pass
+    
+    return {"error": text}
+
 
 def risk_assessment(project_text):
     prompt = f"""
@@ -35,10 +58,7 @@ Project text:
 
     refined_output = reflexion_check(initial_output)
 
-    try:
-        return json.loads(refined_output)
-    except json.JSONDecodeError:
-        return {"error": refined_output}
+    return parse_json_safely(refined_output)
 
 
 def reflexion_check(output_json):
