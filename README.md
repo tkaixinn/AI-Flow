@@ -111,11 +111,8 @@ The engine executes workflows in the following sequence:
 This design separates **workflow logic** from **workflow configuration**, enabling scalable, citizen-developer-ready AI automation.
 
 ### Input
-- Plain text meeting transcript (same as Milestone 1 & 2)
+- Same as Milestone 1: a plain text meeting transcript.
 - Can be extended to other document types or workflows by creating a new YAML file and corresponding Python function
-
-**Example Input:**
-Same as Milestone 1: a plain text meeting transcript.
 
 ### YAML Workflow Definition
 Example `workflow_configs/meeting_workflow.yaml`:
@@ -143,7 +140,7 @@ Milestone 4 allows project managers to identify and mitigate potential risks in 
 It uses **Chain-of-Thought (CoT)** reasoning and **Reflexion** to ensure completeness and accuracy.
 
 ### Input
-Project plans or proposals as plain text.
+Same as Milestone 1: a plain text meeting transcript.
 
 **Example Input:**
 Project Alpha aims to launch a new product by Q3.
@@ -230,7 +227,7 @@ Structured JSON, same schema as Milestone 2
 }
 ```
 
-# Milestone 6: Streamlit Dashboard 
+## Milestone 6: Streamlit Dashboard 
 
 ## Overview 
 Milestone 6 focuses on building a **user-friendly platform using Streamlit** for AI-Flow workflows. The goal is to make AI-driven workflow outputs accessible to both business and technical users without requiring coding knowledge.
@@ -280,40 +277,31 @@ streamlit run app.py
 
 ## Milestone 7: Streamlit Deployment
 
-**Overview:** 
+### Overview
 Deploy AI-Flow as a web application for easy access without requiring local Python setup.
 
-**Features:**
-### 1. Workflow Selection
-Full Streamlit web app interface for running workflows.
-### 2. Input Options
-Tabbed interface: "Run Workflow" for input/output and "Workflow Guide" for instructions.
-- Downloadable JSON output for technical users.
-- Readable structured output for business users.
-
-**Deployment Details:**
+### Deployment Details
 - Deployed on **Streamlit Cloud**, tagged as **v1.0** for the first stable release.
-- Live demo for stakeholders and interviewers: [AI-Flow Live Demo](https://ai-flow.streamlit.app)
 
 **Deployment Summary:**
 - Project hosted on GitHub and linked to Streamlit Cloud.
 - `app.py` used as the entry point with all dependencies specified in `requirements.txt`.
 - Deployment verified to ensure smooth functionality and accessibility.
 
-### Milestone 8: Refined Readable Outputs & Streamlit Presentation
+## Milestone 8: Refined Readable Outputs & Streamlit Presentation
 
-**Overview**  
+### Overview
 This milestone enhances the presentation of workflow outputs for **non-technical users**, making AI-Flow results immediately actionable and visually clear. Outputs are now formatted with indentations and sections, improving readability and professional appearance. 
 
-**Enhancements**
+### Enhancements
 - **Error Handling:** Recursive extraction of meaningful AI outputs, unwrapping any error-wrapped responses.  
 - **Readable Output Formatting:** Nested JSON outputs are displayed in a business-friendly format using headings, bullets, and spacing.  
 
-**Input**  
+### Input
 Same as previous milestones: plain text meeting transcripts or project plans.
 
-**Output**  
+### Output
 Readable, structured, business-friendly output alongside JSON. 
 
-**Impact**  
+### Impact 
 Improves end-user experience, reduces cognitive load, and ensures stakeholders can quickly interpret and act on AI-generated insights.
